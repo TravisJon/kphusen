@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCS Service - Login</title>
+    <title>Kasir Husen - Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         /* Background Gradien */
@@ -110,12 +110,12 @@
                                 <button type="submit" class="btn btn-primary login-btn">Login</button>
                             </div>
                         </form>
+                        <!-- Footer -->
+                        <div class="login-footer">
+                            <p class="small">Belum punya akun? <a href="{{ url('/register') }}">Daftar di sini</a></p>
+                        </div>
                     </div>
 
-                    <!-- Footer -->
-                    <div class="login-footer">
-                        <p class="small">Belum punya akun? <a href="{{ url('/register') }}">Daftar di sini</a></p>
-                    </div>
 
                 </div>
             </div>

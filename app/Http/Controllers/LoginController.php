@@ -27,7 +27,7 @@ class LoginController extends Controller
             // buat ulang session login
             $request->session()->regenerate();
 
-            $role_id = auth()->user()->role_id;
+            $role_id = Auth()->user()->role_id;
 
             if ($role_id === 1) {
                 // Jika user adalah superadmin

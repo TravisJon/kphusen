@@ -1,6 +1,7 @@
 @extends('layout.master')
 @section('title', 'Dashboard')
-@section('header', 'Selamat Datang, Super Admin')
+@section('header', 'Dashboard')
+@section('header1', 'Selamat Datang, Super Admin')
 @section('content')
 
     <div class="row">

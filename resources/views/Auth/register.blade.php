@@ -9,7 +9,7 @@
     <style>
         /* Background Gradien */
         body {
-            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -20,31 +20,21 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 12px;
             overflow: hidden;
-            max-width: 350px;
-            /* Membatasi lebar maksimum */
+            max-width: 500px;
             width: 100%;
-            /* Membuat responsif */
-            max-height: 500px;
-            /* Membatasi tinggi maksimum */
-            display: flex;
-            flex-direction: column;
-            /* Menyusun elemen anak secara vertikal */
+            max-height: 620px;
         }
 
         .register-header {
             background-color: #007bff;
             color: white;
-            padding: 15px;
-            /* Mengurangi padding header */
+            padding: 20px;
             text-align: center;
         }
 
         .register-body {
-            padding: 15px;
-            /* Mengurangi padding untuk mengompresi tampilan */
+            padding: 30px;
             background-color: white;
-            overflow-y: auto;
-            /* Menambahkan scroll vertikal jika konten melebihi tinggi */
         }
 
         .form-control {
@@ -53,11 +43,11 @@
 
         .register-btn {
             border-radius: 8px;
+            padding: 10px;
         }
 
         .register-footer {
-            padding: 10px 0;
-            /* Mengurangi padding footer */
+            padding: 20px 0;
             text-align: center;
         }
 
@@ -88,6 +78,7 @@
                     <div class="register-body">
                         <form action="{{ url('/registeruser') }}" method="POST">
                             @csrf
+
                             <!-- Input Nama -->
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama</label>
@@ -133,12 +124,12 @@
                                 <button type="submit" class="btn btn-primary register-btn">Create Account</button>
                             </div>
                         </form>
+                        <!-- Footer -->
+                        <div class="register-footer">
+                            <p class="small">Sudah punya akun? <a href="{{ url('/') }}">Log in di sini</a></p>
+                        </div>
                     </div>
 
-                    <!-- Footer -->
-                    <div class="register-footer">
-                        <p class="small">Sudah punya akun? <a href="{{ url('/') }}">Log in di sini</a></p>
-                    </div>
 
                 </div>
             </div>

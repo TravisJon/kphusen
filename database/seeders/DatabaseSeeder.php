@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         // Mendefinisikan role yang ada
         $roles = [
             [
-                'nama' => 'Superadmin',
+                'nama' => 'Super Admin',
             ],
             [
                 'nama' => 'Admin',
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         // Data pengguna yang akan dimasukkan ke dalam database
         $data = [
             [
-                'nama' => 'Superadmin',
+                'nama' => 'Super Admin',
                 'email' => 'superadmin@admin.test',
                 'password' => bcrypt('superadmin'),
                 'role_id' => 1, // ID Superadmin
@@ -48,9 +48,9 @@ class DatabaseSeeder extends Seeder
                 'role_id' => 2, // ID Admin
             ],
             [
-                'nama' => 'Kasir 1',
-                'email' => 'kasir1@kasir.test',
-                'password' => bcrypt('kasir1'),
+                'nama' => 'Kasir',
+                'email' => 'kasir@kasir.test',
+                'password' => bcrypt('kasir'),
                 'role_id' => 3, // ID Kasir
             ],
         ];

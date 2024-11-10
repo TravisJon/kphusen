@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <title>Indomaret Kodok - @yield('title')</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="{{ asset('Template') }}/assets/img/kaiadmin/favicon.ico" type="image/x-icon" />
 
@@ -15,16 +15,45 @@
 <body>
     <div class="wrapper">
 
-        <!-- Sidebar -->
-        @include('layout.sidebar')
+
+
+        <div class="sidebar" data-background-color="dark">
+            <div class="sidebar-logo">
+
+                <!-- Header -->
+                @include('layout.header')
+
+            </div>
+
+            <!-- Sidebar -->
+            @include('layout.sidebar')
+
+        </div>
+
+        @include('sweetalert::alert')
 
         <div class="main-panel">
             <div class="main-header">
                 <div class="main-header-logo">
-
-                    <!-- Header -->
-                    @include('layout.header')
-
+                    <!-- Logo Header -->
+                    <div class="logo-header" data-background-color="dark">
+                        <a href="index.html" class="logo">
+                            <img src="{{ asset('Template') }}/assets/img/kaiadmin/logo_light.svg" alt="navbar brand"
+                                class="navbar-brand" height="20" />
+                        </a>
+                        <div class="nav-toggle">
+                            <button class="btn btn-toggle toggle-sidebar">
+                                <i class="gg-menu-right"></i>
+                            </button>
+                            <button class="btn btn-toggle sidenav-toggler">
+                                <i class="gg-menu-left"></i>
+                            </button>
+                        </div>
+                        <button class="topbar-toggler more">
+                            <i class="gg-more-vertical-alt"></i>
+                        </button>
+                    </div>
+                    <!-- End Logo Header -->
                 </div>
                 <!-- Navbar Header -->
                 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
@@ -55,7 +84,7 @@
                                     </form>
                                 </ul>
                             </li>
-                            <li class="nav-item topbar-icon dropdown hidden-caret">
+                            {{-- <li class="nav-item topbar-icon dropdown hidden-caret">
                                 <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-envelope"></i>
@@ -257,7 +286,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
 
                             <li class="nav-item topbar-user dropdown hidden-caret">
                                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
@@ -268,7 +297,7 @@
                                     </div>
                                     <span class="profile-username">
                                         <span class="op-7">Hi,</span>
-                                        <span class="fw-bold">Hizrian</span>
+                                        <span class="fw-bold">{{ Auth::user()->nama }}</span>
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -280,10 +309,10 @@
                                                         alt="image profile" class="avatar-img rounded" />
                                                 </div>
                                                 <div class="u-text">
-                                                    <h4>Hizrian</h4>
-                                                    <p class="text-muted">hello@example.com</p>
-                                                    <a href="profile.html"
-                                                        class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                                    <h4>{{ Auth::user()->nama }}</h4>
+                                                    <p class="text-muted">{{ Auth::user()->email }}</p>
+                                                    <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View
+                                                        Profile</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -295,7 +324,10 @@
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">Account Setting</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Logout</a>
+                                            <form action="{{ url('logout') }}" method="POST" style="margin: 0;">
+                                                @csrf
+                                                <button class="dropdown-item" type="submit">Logout</button>
+                                            </form>
                                         </li>
                                     </div>
                                 </ul>
@@ -311,8 +343,8 @@
                     <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
                         <div>
 
-                            <h3 class="fw-bold mb-3">Dashboard</h3>
-                            <h6> @yield('header') </h6>
+                            <h3 class="fw-bold mb-3">@yield('header')</h3>
+                            <h6> @yield('header1') </h6>
                         </div>
                     </div>
                     @yield('content')

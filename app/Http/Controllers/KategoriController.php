@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KategoriController extends Controller
 {
@@ -11,7 +14,13 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        $db = DB::table('kategori')->get();
+
+        $title = 'Delete!';
+        $text = "Apakah Anda yakin ingin menghapus?";
+        confirmDelete($title, $text);
+
+        return view('KategoriProduk.kategori', compact('db'));
     }
 
     /**
@@ -19,7 +28,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('KategoriProduk.kategori');
     }
 
     /**
@@ -27,7 +36,10 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table("kategori")->insert([
+            'nama_kategori' => $request->nama_kategori,
+        ]);
+        return redirect('/kategori')->with('success', 'Kategori Produk berhasil ditambahkan');
     }
 
     /**
@@ -43,15 +55,19 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = DB::table('kategori')->where('id', $id)->get();
+        return view('KategoriProduk.edit_kategori', ['data' => $data]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('kategori')->where('id', $request->id)->update([
+            'nama_kategori' => $request->nama_kategori,
+        ]);
+        return redirect('/kategori')->with('success', 'Kategori Produk berhasil diupdate');
     }
 
     /**
@@ -59,6 +75,16 @@ class KategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $db = DB::table("kategori")->where("id", $id)->first();
+        DB::table("kategori")->where("id", $id)->delete();
+
+        return back()->with('success', 'Kategori Produk ' . $db->nama_kategori . ' berhasil dihapus');
+    }
+
+    public function pdf()
+    {
+        $db = DB::table('kategori')->get();
+        $pdf = pdf::loadview('KategoriProduk.pdf_kategori', compact('db'));
+        return $pdf->stream('kasir_Husen.pdf');
     }
 }
